@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { CartProvider } from './cartContext'
+import { useContext } from 'react'
+import { CartContext } from './cartContext'
 
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
   const [search, setSearch] = useState('')
   const [debouncedSearch, setDebouncedSearch] = useState('')
   const [loading, setLoading] = useState(false)
+  const { addToCart } = useContext(CartContext)
 
   
   useEffect(() => {
@@ -66,12 +68,10 @@ function Home() {
           <div key={item.id} style={{ border: '1px solid #5676bf', margin: '10px', padding: '10px' }}>
             <img src={item.image} alt={item.title} style={{ width: '100px', height: '100px' }} />
           <h4>{item.title}</h4>
-          <p>₹ {item.price}</p>
-            <cartContext.Provider value={{id: item.id, title: item.title, price: item.price, image: item.image}}>
-          <button>Add to Cart</button>
-          
-
-          </cartContext.Provider>
+          <p>${item.price}</p>
+         <button onClick={() => addToCart(item)}>
+  Add to Cart
+</button>
         </div>
       ))}
 
