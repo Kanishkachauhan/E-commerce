@@ -21,17 +21,28 @@ function Register() {
     const handleNameChange=(e)=>{
         setName(e.target.value)
     }
-    const handleSubmit=(e)=>{
-        e.preventDefault()
-        console.log('Email:', email)
-        console.log('Name:', name)
-        console.log('Role:', role)
-        if(!email || !name || !password || !role){
-            alert('Please fill all fields')
-            return
-        }
-        
-    }
+    const handleSubmit = (e) => {
+  e.preventDefault()
+
+  if (!name || !email || !password || !role) {
+    alert('Please fill all fields')
+    return
+  }
+
+  const userData = {
+    name,
+    email,
+    password,
+    role
+  }
+
+  localStorage.setItem('user', JSON.stringify(userData))
+
+  console.log('Saved in localStorage')
+
+  
+  
+}
     function roleChange(e){
   const value = e.target.value
   setRole(value)
