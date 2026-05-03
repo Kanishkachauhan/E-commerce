@@ -1,0 +1,37 @@
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;   /* slim header */
+  background: #7ea7e1;
+  color: white;
+}
+
+/* Fix layout issue */
+.header-div {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+/* Anchor Styling */
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+/* Hover Effect */
+.nav-links li a:hover {
+  color: #d4ffd4;
+}
