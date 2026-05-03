@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { CartProvider } from './cartContext'
+
 
 function Home() {
   const [products, setProducts] = useState([])
@@ -41,9 +43,10 @@ function Home() {
 
     fetchProducts()
   }, [debouncedSearch])
+  
 
   return (
-    <div style={{ padding: '20px' }}>
+      <div style={{ padding: '20px' }}>
       
       <h2>Home</h2>
 
@@ -60,9 +63,15 @@ function Home() {
 
      
       {!loading && products.map((item) => (
-        <div key={item.id} style={{ border: '1px solid #5676bf', margin: '10px', padding: '10px' }}>
+          <div key={item.id} style={{ border: '1px solid #5676bf', margin: '10px', padding: '10px' }}>
+            <img src={item.image} alt={item.title} style={{ width: '100px', height: '100px' }} />
           <h4>{item.title}</h4>
           <p>₹ {item.price}</p>
+            <cartContext.Provider value={{id: item.id, title: item.title, price: item.price, image: item.image}}>
+          <button>Add to Cart</button>
+          
+
+          </cartContext.Provider>
         </div>
       ))}
 
