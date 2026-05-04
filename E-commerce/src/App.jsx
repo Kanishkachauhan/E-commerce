@@ -7,9 +7,11 @@ import Home from './Pages/Home'
 
 import Login from './Pages/Login'
 import Register from './Pages/Register'
+import { CartProvider } from './Pages/cartContext'
 
 function App() {
   return (
+    <CartProvider>
     <BrowserRouter>
 
       <Header />
@@ -23,6 +25,7 @@ function App() {
      
 
     </BrowserRouter>
+    </CartProvider>
   )
 }
 

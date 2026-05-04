@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react"
 
-const CartContext = createContext()
+
+export const CartContext = createContext() 
 
 export const useCart = () => useContext(CartContext)
 
@@ -57,6 +58,8 @@ export const CartProvider = ({ children }) => {
     (total, item) => total + item.price * item.quantity,
     0
   )
+  const saved=localStorage.setItem('cart',JSON.stringify(cart) )
+
 
   return (
     <CartContext.Provider
