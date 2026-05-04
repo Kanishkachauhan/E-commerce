@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { CartContext } from './cartContext'
+import './Home.css'
+import Shimmer from '../components/Shimmer'
 
 
 function Home() {
@@ -48,34 +50,37 @@ function Home() {
   
 
   return (
-      <div style={{ padding: '20px' }}>
-      
-      <h2>Home</h2>
+      <div className="home-container">
 
-      
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+  <h2 className="home-title">🛍️ Explore Products</h2>
 
-     
-      {loading && <p>Loading...</p>}
+  <input
+    className="search-input"
+    type="text"
+    placeholder="Search products..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
 
-     
-      {!loading && products.map((item) => (
-          <div key={item.id} style={{ border: '1px solid #5676bf', margin: '10px', padding: '10px' }}>
-            <img src={item.image} alt={item.title} style={{ width: '100px', height: '100px' }} />
-          <h4>{item.title}</h4>
-          <p>${item.price}</p>
-         <button onClick={() => addToCart(item)}>
-  Add to Cart
-</button>
-        </div>
-      ))}
+  {loading && <Shimmer />}
 
-    </div>
+  <div className="product-grid">
+    {!loading && products.map((item) => (
+      <div className="product-card" key={item.id}>
+        <img src={item.image} alt={item.title} />
+
+        <h4>{item.title}</h4>
+        <p className="price">${item.price}</p>
+
+        <button onClick={() => addToCart(item)}>
+          Add to Cart
+        </button>
+      </div>
+    ))}
+  </div>
+
+  
+</div>
   )
 }
 
